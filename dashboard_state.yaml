@@ -1,0 +1,19 @@
+# Project Dashboard State Configuration v2
+# This file stores declared metadata (user preferences)
+# Derived metadata (git info, file stats) is calculated on-demand
+
+# List of favorite projects (declared metadata)
+favorites:
+  - "my_web_app"
+  - "data_analysis_project"
+  - "automation_scripts"
+
+# Optional: Additional declared metadata can be added here
+# For example:
+# project_tags:
+#   my_web_app:
+#     - web
+#     - flask
+#   data_analysis_project:
+#     - python
+#     - jupyter

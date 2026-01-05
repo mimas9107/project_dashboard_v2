@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "project-dashboard-v2": {
+      "command": "python3",
+      "args": [
+        "/absolute/path/to/project_dashboard_v2/mcp_server.py"
+      ],
+      "env": {}
+    }
+  }
+}
