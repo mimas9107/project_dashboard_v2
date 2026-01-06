@@ -1,0 +1,167 @@
+:root {
+    --bg-dark: #121212;
+    --card-bg: #1e1e1e;
+    --text-main: #e0e0e0;
+    --text-muted: #999;
+    --accent: #0d6efd;
+    --fav-gold: #ffc107;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    font-family: 'Segoe UI', system-ui, sans-serif;
+}
+
+.project-card {
+    background-color: var(--card-bg);
+    border: 1px solid #333;
+    cursor: pointer;
+    transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--accent);
+    box-shadow: 0 8px 16px rgba(13, 110, 253, 0.3);
+}
+
+.project-title { 
+    color: #fff; 
+    font-weight: bold; 
+    font-size: 1.1rem;
+}
+
+.project-desc { 
+    color: var(--text-muted); 
+    font-size: 0.9rem; 
+    margin-bottom: 1rem; 
+    min-height: 40px;
+}
+
+/* 語言標籤 */
+.lang-badge { 
+    border: none; 
+    font-size: 0.7rem; 
+    padding: 4px 8px; 
+    border-radius: 4px; 
+    color: #fff;
+    margin-right: 4px;
+    margin-bottom: 4px;
+}
+
+.lang-Python { background-color: #3572A5; }
+.lang-JavaScript { background-color: #f1e05a; color: #000; }
+.lang-TypeScript { background-color: #2b7489; }
+.lang-React { background-color: #61dafb; color: #000; }
+.lang-Rust { background-color: #dea584; }
+.lang-Go { background-color: #00ADD8; }
+.lang-HTML { background-color: #e34c26; }
+.lang-CSS { background-color: #563d7c; }
+.lang-Java { background-color: #b07219; }
+
+/* 標籤 */
+.tag-badge {
+    font-size: 0.7rem;
+    padding: 3px 7px;
+    border-radius: 3px;
+    background-color: #444;
+    color: #ddd;
+    margin-right: 4px;
+}
+
+/* 星號按鈕 */
+.btn-fav { 
+    background: none; 
+    border: none; 
+    font-size: 1.3rem; 
+    color: #555; 
+    transition: color 0.2s, transform 0.2s; 
+}
+
+.btn-fav:hover {
+    transform: scale(1.1);
+}
+
+.btn-fav.active { 
+    color: var(--fav-gold); 
+    animation: star-pulse 0.3s ease-out;
+}
+
+@keyframes star-pulse {
+    50% { transform: scale(1.3); }
+}
+
+/* 分隔線 */
+.section-divider {
+    border-top: 1px solid #333;
+    margin: 3rem 0;
+    position: relative;
+    text-align: center;
+}
+
+.section-divider span {
+    position: absolute; 
+    top: -12px; 
+    left: 50%; 
+    transform: translateX(-50%);
+    background: var(--bg-dark); 
+    padding: 0 15px; 
+    color: var(--text-muted); 
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+/* 目錄樹 */
+#treeContent { 
+    background: #252525; 
+    padding: 15px; 
+    border-radius: 8px; 
+    color: #ccc; 
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+.tree-list { 
+    list-style: none; 
+    padding-left: 1.5rem; 
+}
+
+.tree-list li {
+    margin: 5px 0;
+    line-height: 1.8;
+}
+
+/* 搜尋框 */
+#searchInput, .form-select {
+    background-color: var(--card-bg);
+    border-color: #333;
+    color: var(--text-main);
+}
+
+#searchInput:focus, .form-select:focus {
+    background-color: var(--card-bg);
+    border-color: var(--accent);
+    color: var(--text-main);
+    box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+}
+
+/* 統計卡片 */
+.stat-card {
+    background: var(--card-bg);
+    border: 1px solid #333;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+}
+
+.stat-value {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: var(--accent);
+}
+
+.stat-label {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
