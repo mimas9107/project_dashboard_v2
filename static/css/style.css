@@ -2,7 +2,7 @@
     --bg-dark: #121212;
     --card-bg: #1e1e1e;
     --text-main: #e0e0e0;
-    --text-muted: #999;
+    --text-muted: #b0b0b0; /* 調亮預設的 muted 文字 */
     --accent: #0d6efd;
     --fav-gold: #ffc107;
 }
@@ -11,6 +11,12 @@ body {
     background-color: var(--bg-dark);
     color: var(--text-main);
     font-family: 'Segoe UI', system-ui, sans-serif;
+}
+
+.subtitle {
+    color: #bbb; /* 比 muted 亮，更接近白字 */
+    font-size: 1.1rem;
+    font-weight: 400;
 }
 
 .project-card {
@@ -48,17 +54,50 @@ body {
     color: #fff;
     margin-right: 4px;
     margin-bottom: 4px;
+    background-color: #444; /* 預設背景顏色 */
 }
 
 .lang-Python { background-color: #3572A5; }
-.lang-JavaScript { background-color: #f1e05a; color: #000; }
+.lang-JavaScript { background-color: #f1e05a; color: #000 !important; }
 .lang-TypeScript { background-color: #2b7489; }
-.lang-React { background-color: #61dafb; color: #000; }
+.lang-React { background-color: #61dafb; color: #000 !important; }
 .lang-Rust { background-color: #dea584; }
 .lang-Go { background-color: #00ADD8; }
 .lang-HTML { background-color: #e34c26; }
 .lang-CSS { background-color: #563d7c; }
 .lang-Java { background-color: #b07219; }
+.lang-Markdown { background-color: #083fa1; }
+.lang-Shell { background-color: #89e051; color: #000 !important; }
+.lang-C { background-color: #555555; }
+.lang-C\+\+ { background-color: #f34b7d; }
+.lang-C\# { background-color: #178600; }
+.lang-PHP { background-color: #4F5D95; }
+.lang-Ruby { background-color: #701516; }
+.lang-Vue { background-color: #41b883; color: #000 !important; }
+.lang-Swift { background-color: #ffac45; color: #000 !important; }
+.lang-Kotlin { background-color: #F18E33; }
+.lang-YAML { background-color: #cb171e; }
+.lang-JSON { background-color: #292929; }
+
+/* Modal 暗色化 */
+.modal-content {
+    background-color: #1e1e1e; /* 比主背景稍亮的黑底 */
+    color: var(--text-main);
+    border: 1px solid #444;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.modal-header {
+    border-bottom: 1px solid #444;
+}
+
+.modal-footer {
+    border-top: 1px solid #444;
+}
+
+.btn-close-white {
+    filter: invert(1) grayscale(100%) brightness(200%);
+}
 
 /* 標籤 */
 .tag-badge {
@@ -148,11 +187,18 @@ body {
 
 /* 統計卡片 */
 .stat-card {
-    background: var(--card-bg);
-    border: 1px solid #333;
-    border-radius: 8px;
-    padding: 20px;
+    background: #2a2a2a; /* 比彈窗背景更亮，讓統計資訊跳出來 */
+    border: 1px solid #444;
+    border-radius: 12px;
+    padding: 24px;
     text-align: center;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+    transition: transform 0.2s;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--accent);
 }
 
 .stat-value {
@@ -162,6 +208,20 @@ body {
 }
 
 .stat-label {
-    color: var(--text-muted);
+    color: #ccc; /* 提高統計標籤亮度，原先是 var(--text-muted) */
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+.lang-count {
+    color: #ffffff !important; /* 強制純白 */
     font-size: 0.9rem;
+    margin-left: 8px;
+    font-weight: 500;
+    vertical-align: middle;
+}
+
+/* Fallback: 如果 JS 快取導致 text-muted 還在，也讓它變亮 */
+.modal-body .text-muted {
+    color: #e0e0e0 !important;
 }

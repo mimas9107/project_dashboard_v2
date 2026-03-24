@@ -193,7 +193,7 @@ async function showStatistics() {
             ${stats.top_languages.map(lang => `
                 <div class="col-md-6 mb-2">
                     <span class="badge lang-badge lang-${lang.language}">${lang.language}</span>
-                    <span class="text-muted">x ${lang.count} 個專案</span>
+                    <span class="lang-count">x ${lang.count} 個專案</span>
                 </div>
             `).join('')}
         </div>
