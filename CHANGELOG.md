@@ -16,9 +16,11 @@
 
 ### 🔧 技術改進
 - `project_manager.py` 新增 `get_readme_content()` 方法
-- Modal 從 `modal-lg` 升級為 `modal-xl modal-dialog-centered`
-- 使用 `Promise.all` 並行載入 README 與檔案結構，提升載入速度
+- Modal 從 `modal-lg` 升級為 `modal-xl modal-dialog-scrollable`
+- 使用順序載入（先 README 再結構）確保穩定性
+- 新增 URL 編碼處理與錯誤處理，避免特殊字元問題
 - 新增完整 Markdown 深色主題樣式（標題、程式碼、表格、引用等）
+- **Modal 尺寸優化**: 高度改為 `90vh`，貼近瀏覽器檢視畫面，兩側內容各自獨立滾動
 
 ---
 
