@@ -100,25 +100,24 @@ async function showStructure(name) {
     const encodedName = encodeURIComponent(name);
     
     try {
-        const readmeRes = fetch(`/api/readme/${encodedName}`);
-        const structureRes = fetch(`/api/structure/${encodedName}`);
-        
-        const [readmeResp, structureResp] = await Promise.all([readmeRes, structureRes]);
-        
+        // Fetch readme first
+        const readmeResp = await fetch(`/api/readme/${encodedName}`);
         if (readmeResp.ok) {
             const readmeData = await readmeResp.json();
             document.getElementById('readmeContent').innerHTML = renderMarkdown(readmeData.readme);
         } else {
-            document.getElementById('readmeContent').innerHTML = '<div class="text-danger text-center py-5">無法載入 README</div>';
+            const errorText = await readmeResp.text();
+            document.getElementById('readmeContent').innerHTML = `<div class="text-danger text-center py-5">無法載入 README: ${readmeResp.status}</div>`;
         }
         
+        // Then fetch structure
+        const structureResp = await fetch(`/api/structure/${encodedName}`);
         if (structureResp.ok) {
             const structureData = await structureResp.json();
             document.getElementById('treeContent').innerHTML = `<ul class="tree-list">${renderTree(structureData)}</ul>`;
         }
     } catch (error) {
         document.getElementById('readmeContent').innerHTML = `<div class="text-danger text-center py-5">載入失敗: ${error.message}</div>`;
-        document.getElementById('treeContent').innerHTML = `<div class="text-danger text-center py-5">載入失敗: ${error.message}</div>`;
     }
 }
 
