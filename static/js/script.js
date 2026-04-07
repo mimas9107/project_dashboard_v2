@@ -92,11 +92,28 @@ async function toggleFav(name) {
 
 async function showStructure(name) {
     document.getElementById('modalTitle').innerText = name;
+    document.getElementById('readmeContent').innerHTML = '<div class="text-center py-5"><div class="spinner-border text-primary"></div></div>';
+    document.getElementById('treeContent').innerHTML = '<div class="text-center py-5"><div class="spinner-border text-primary"></div></div>';
+    
     new bootstrap.Modal(document.getElementById('structureModal')).show();
     
-    const res = await fetch(`/api/structure/${name}`);
-    const data = await res.json();
-    document.getElementById('treeContent').innerHTML = `<ul class="tree-list">${renderTree(data)}</ul>`;
+    const readmeRes = fetch(`/api/readme/${name}`);
+    const structureRes = fetch(`/api/structure/${name}`);
+    
+    const [readmeResp, structureResp] = await Promise.all([readmeRes, structureRes]);
+    
+    const readmeData = await readmeResp.json();
+    const structureData = await structureResp.json();
+    
+    document.getElementById('readmeContent').innerHTML = renderMarkdown(readmeData.readme);
+    document.getElementById('treeContent').innerHTML = `<ul class="tree-list">${renderTree(structureData)}</ul>`;
+}
+
+function renderMarkdown(text) {
+    if (typeof marked === 'undefined') {
+        return `<pre style="white-space:pre-wrap;word-break:break-word;">${text}</pre>`;
+    }
+    return marked.parse(text);
 }
 
 function renderTree(node) {

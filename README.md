@@ -1,4 +1,4 @@
-# Project Dashboard v2.1
+# Project Dashboard v2.2
 
 > 統一核心邏輯 + SQLite 資料庫 + FastAPI Web Server + MCP Server 的本地專案管理系統
 
@@ -8,6 +8,12 @@
 - ✅ 所有前端依賴（Bootstrap、Bootstrap Icons）已本地化
 - ✅ 無需外部網路連線即可正常顯示樣式
 - ✅ 字型檔案內建於 `static/fonts/` 目錄
+
+### 0.1. **專案詳情分欄** (v2.2.2)
+- ✅ 點擊專案卡片彈出左右分欄 Modal
+- ✅ 左側顯示完整 README.md（Markdown 渲染）
+- ✅ 右側顯示檔案結構樹
+- ✅ 兩側獨立滾動瀏覽
 
 ### 1. **統一核心邏輯層**
 - ✅ 所有專案管理邏輯集中在 `core/project_manager.py`
@@ -71,6 +77,7 @@ project_dashboard_v2/
 │   │   └── style.css              # 深色主題樣式
 │   ├── js/
 │   │   ├── bootstrap.bundle.min.js # Bootstrap 5.3.0 JS (本地)
+│   │   ├── marked.min.js          # Markdown 渲染引擎 (本地)
 │   │   └── script.js              # 前端互動邏輯
 │   └── fonts/
 │       ├── bootstrap-icons.woff2  # Bootstrap Icons 字型

@@ -162,6 +162,18 @@ async def get_structure(name: str, depth: int = Query(default=2)):
         raise HTTPException(status_code=500, detail=str(e))
 
 
+@app.get("/api/readme/{name}")
+async def get_readme(name: str):
+    try:
+        content = project_manager.get_readme_content(name)
+        return JSONResponse(content={"readme": content})
+
+    except ValueError as e:
+        raise HTTPException(status_code=403, detail=str(e))
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
 @app.get("/api/open/{name}")
 async def open_in_code(name: str, editor: str = Query(default="code")):
     try:

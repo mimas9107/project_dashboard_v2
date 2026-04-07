@@ -63,16 +63,37 @@ HTML_CONTENT = """<!DOCTYPE html>
         </div>
     </div>
 
-    <!-- 目錄結構 Modal -->
+    <!-- 專案詳情 Modal -->
     <div class="modal fade" id="structureModal" tabindex="-1">
-        <div class="modal-dialog modal-lg">
+        <div class="modal-dialog modal-xl modal-dialog-centered">
             <div class="modal-content border-0 shadow">
                 <div class="modal-header bg-dark text-white">
                     <h5 class="modal-title"><i class="bi bi-folder2-open me-2"></i><span id="modalTitle"></span></h5>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                 </div>
-                <div class="modal-body p-4">
-                    <div id="treeContent"></div>
+                <div class="modal-body p-0">
+                    <div class="row g-0 detail-split-view">
+                        <div class="col-md-6 detail-pane detail-pane-left">
+                            <div class="detail-pane-header">
+                                <i class="bi bi-markdown-fill me-2"></i>README
+                            </div>
+                            <div class="detail-pane-content" id="readmeContent">
+                                <div class="text-center py-5">
+                                    <div class="spinner-border text-primary"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 detail-pane detail-pane-right">
+                            <div class="detail-pane-header">
+                                <i class="bi bi-folder2-open me-2"></i>檔案結構
+                            </div>
+                            <div class="detail-pane-content" id="treeContent">
+                                <div class="text-center py-5">
+                                    <div class="spinner-border text-primary"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -94,6 +115,7 @@ HTML_CONTENT = """<!DOCTYPE html>
     </div>
 
     <script src="/static/js/bootstrap.bundle.min.js"></script>
+    <script src="/static/js/marked.min.js"></script>
     
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </body>
@@ -215,24 +237,131 @@ body {
 }
 
 /* 目錄樹 */
-#treeContent { 
-    background: #252525; 
-    padding: 15px; 
-    border-radius: 8px; 
-    color: #ccc; 
+#treeContent {
+    background: #252525;
+    padding: 15px;
+    border-radius: 8px;
+    color: #ccc;
     max-height: 500px;
     overflow-y: auto;
 }
 
-.tree-list { 
-    list-style: none; 
-    padding-left: 1.5rem; 
+.tree-list {
+    list-style: none;
+    padding-left: 1.5rem;
 }
 
 .tree-list li {
     margin: 5px 0;
     line-height: 1.8;
 }
+
+/* 專案詳情分欄布局 */
+.detail-split-view {
+    height: 70vh;
+    min-height: 500px;
+}
+
+.detail-pane {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.detail-pane-left {
+    border-right: 1px solid #333;
+}
+
+.detail-pane-header {
+    padding: 12px 20px;
+    background: #252525;
+    border-bottom: 1px solid #333;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: #ccc;
+    flex-shrink: 0;
+}
+
+.detail-pane-content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px;
+}
+
+#readmeContent {
+    color: #d0d0d0;
+    line-height: 1.7;
+}
+
+#readmeContent h1,
+#readmeContent h2,
+#readmeContent h3,
+#readmeContent h4,
+#readmeContent h5,
+#readmeContent h6 {
+    color: #fff;
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+    font-weight: 600;
+}
+
+#readmeContent h1 { font-size: 1.8rem; border-bottom: 1px solid #333; padding-bottom: 0.3rem; }
+#readmeContent h2 { font-size: 1.5rem; border-bottom: 1px solid #2a2a2a; padding-bottom: 0.2rem; }
+#readmeContent h3 { font-size: 1.25rem; }
+
+#readmeContent p { margin-bottom: 1rem; }
+
+#readmeContent a { color: #58a6ff; text-decoration: none; }
+#readmeContent a:hover { text-decoration: underline; }
+
+#readmeContent code {
+    background: #2a2a2a;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.9em;
+    color: #e6edf3;
+}
+
+#readmeContent pre {
+    background: #1a1a1a;
+    border: 1px solid #333;
+    border-radius: 6px;
+    padding: 16px;
+    overflow-x: auto;
+    margin-bottom: 1rem;
+}
+
+#readmeContent pre code { background: none; padding: 0; color: #d0d0d0; }
+
+#readmeContent blockquote {
+    border-left: 4px solid #333;
+    padding-left: 16px;
+    color: #888;
+    margin: 1rem 0;
+}
+
+#readmeContent ul,
+#readmeContent ol { padding-left: 1.5rem; margin-bottom: 1rem; }
+#readmeContent li { margin-bottom: 0.25rem; }
+#readmeContent img { max-width: 100%; border-radius: 6px; }
+
+#readmeContent table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1rem;
+}
+
+#readmeContent table th,
+#readmeContent table td {
+    border: 1px solid #333;
+    padding: 8px 12px;
+    text-align: left;
+}
+
+#readmeContent table th { background: #252525; font-weight: 600; }
+#readmeContent hr { border: none; border-top: 1px solid #333; margin: 1.5rem 0; }
+
+#treeContent { background: transparent; padding: 0; border-radius: 0; max-height: none; }
 
 /* 搜尋框 */
 #searchInput, .form-select {
@@ -363,11 +492,28 @@ async function toggleFav(name) {
 
 async function showStructure(name) {
     document.getElementById('modalTitle').innerText = name;
+    document.getElementById('readmeContent').innerHTML = '<div class="text-center py-5"><div class="spinner-border text-primary"></div></div>';
+    document.getElementById('treeContent').innerHTML = '<div class="text-center py-5"><div class="spinner-border text-primary"></div></div>';
+    
     new bootstrap.Modal(document.getElementById('structureModal')).show();
     
-    const res = await fetch(`/api/structure/${name}`);
-    const data = await res.json();
-    document.getElementById('treeContent').innerHTML = `<ul class="tree-list">${renderTree(data)}</ul>`;
+    const readmeRes = fetch(`/api/readme/${name}`);
+    const structureRes = fetch(`/api/structure/${name}`);
+    
+    const [readmeResp, structureResp] = await Promise.all([readmeRes, structureRes]);
+    
+    const readmeData = await readmeResp.json();
+    const structureData = await structureResp.json();
+    
+    document.getElementById('readmeContent').innerHTML = renderMarkdown(readmeData.readme);
+    document.getElementById('treeContent').innerHTML = `<ul class="tree-list">${renderTree(structureData)}</ul>`;
+}
+
+function renderMarkdown(text) {
+    if (typeof marked === 'undefined') {
+        return `<pre style="white-space:pre-wrap;word-break:break-word;">${text}</pre>`;
+    }
+    return marked.parse(text);
 }
 
 function renderTree(node) {

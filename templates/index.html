@@ -50,16 +50,37 @@
         </div>
     </div>
 
-    <!-- 目錄結構 Modal -->
+    <!-- 專案詳情 Modal -->
     <div class="modal fade" id="structureModal" tabindex="-1">
-        <div class="modal-dialog modal-lg">
+        <div class="modal-dialog modal-xl modal-dialog-centered">
             <div class="modal-content border-0 shadow">
                 <div class="modal-header bg-dark text-white">
                     <h5 class="modal-title"><i class="bi bi-folder2-open me-2"></i><span id="modalTitle"></span></h5>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                 </div>
-                <div class="modal-body p-4">
-                    <div id="treeContent"></div>
+                <div class="modal-body p-0">
+                    <div class="row g-0 detail-split-view">
+                        <div class="col-md-6 detail-pane detail-pane-left">
+                            <div class="detail-pane-header">
+                                <i class="bi bi-markdown-fill me-2"></i>README
+                            </div>
+                            <div class="detail-pane-content" id="readmeContent">
+                                <div class="text-center py-5">
+                                    <div class="spinner-border text-primary"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 detail-pane detail-pane-right">
+                            <div class="detail-pane-header">
+                                <i class="bi bi-folder2-open me-2"></i>檔案結構
+                            </div>
+                            <div class="detail-pane-content" id="treeContent">
+                                <div class="text-center py-5">
+                                    <div class="spinner-border text-primary"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -81,6 +102,7 @@
     </div>
 
     <script src="/static/js/bootstrap.bundle.min.js"></script>
+    <script src="/static/js/marked.min.js"></script>
     
     <script src="/static/js/script.js"></script>
 </body>

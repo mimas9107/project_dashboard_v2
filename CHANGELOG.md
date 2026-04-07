@@ -4,6 +4,24 @@
 
 格式基於 [Keep a Changelog](https://keepachangelog.com/zh-TW/1.0.0/)。
 
+## [2.2.2] - 2026-04-07
+
+### ✨ 新功能
+- **專案詳情分欄 Modal**: 點擊專案卡片後，彈窗改為左右分欄布局
+  - 左半部：顯示完整 README.md 內容（使用 marked.js 渲染 Markdown）
+  - 右半部：保持原有檔案結構樹
+  - 兩側各自獨立滾動，方便同時瀏覽說明與檔案結構
+- **新增 API**: `GET /api/readme/{name}` 回傳專案完整 README.md 內容
+- **本地化 marked.js**: 下載 Markdown 渲染引擎至 `static/js/marked.min.js`，支援離線使用
+
+### 🔧 技術改進
+- `project_manager.py` 新增 `get_readme_content()` 方法
+- Modal 從 `modal-lg` 升級為 `modal-xl modal-dialog-centered`
+- 使用 `Promise.all` 並行載入 README 與檔案結構，提升載入速度
+- 新增完整 Markdown 深色主題樣式（標題、程式碼、表格、引用等）
+
+---
+
 ## [2.2.1] - 2026-04-07
 
 ### 🔧 離線支援
