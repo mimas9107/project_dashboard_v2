@@ -4,6 +4,19 @@
 
 格式基於 [Keep a Changelog](https://keepachangelog.com/zh-TW/1.0.0/)。
 
+## [2.2.1] - 2026-04-07
+
+### 🔧 離線支援
+- **CDN 本地化**: 將所有外部 CDN 資源下載至 `static/` 目錄，支援離線環境使用
+  - Bootstrap 5.3.0 CSS → `static/css/bootstrap.min.css`
+  - Bootstrap 5.3.0 JS → `static/js/bootstrap.bundle.min.js`
+  - Bootstrap Icons 1.10.0 CSS → `static/css/bootstrap-icons.css`
+  - Bootstrap Icons 字型 → `static/fonts/bootstrap-icons.woff2`, `bootstrap-icons.woff`
+- **路徑修正**: Bootstrap Icons CSS 字型路徑從 `./fonts/` 改為 `../fonts/`
+- **模板更新**: `templates/index.html` 和 `setup.py` 中的 CDN 引用全部替換為本地路徑
+
+---
+
 ## [2.2.0] - 2026-03-05
 
 ### ✨ UI/UX 改善

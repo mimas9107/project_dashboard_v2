@@ -11,15 +11,15 @@ from pathlib import Path
 BASE_DIR = Path(__file__).parent
 
 # ===== 前端 HTML =====
-HTML_CONTENT = '''<!DOCTYPE html>
+HTML_CONTENT = """<!DOCTYPE html>
 <html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Project Dashboard v2</title>
     
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/bootstrap-icons.css">
     
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
@@ -93,14 +93,14 @@ HTML_CONTENT = '''<!DOCTYPE html>
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/static/js/bootstrap.bundle.min.js"></script>
     
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </body>
-</html>'''
+</html>"""
 
 # ===== 前端 CSS =====
-CSS_CONTENT = ''':root {
+CSS_CONTENT = """:root {
     --bg-dark: #121212;
     --card-bg: #1e1e1e;
     --text-main: #e0e0e0;
@@ -266,10 +266,10 @@ body {
 .stat-label {
     color: var(--text-muted);
     font-size: 0.9rem;
-}'''
+}"""
 
 # ===== 前端 JS =====
-JS_CONTENT = '''let allProjects = [];
+JS_CONTENT = """let allProjects = [];
 let allLanguages = new Set();
 let allTags = new Set();
 
@@ -469,28 +469,29 @@ async function showStatistics() {
             `).join('')}
         </div>
     `;
-}'''
+}"""
 
 # ===== 啟動腳本 =====
-BAT_WEB = '''@echo off
+BAT_WEB = """@echo off
 python app.py
-pause'''
+pause"""
 
-BAT_MCP = '''@echo off
+BAT_MCP = """@echo off
 python mcp_server.py
-pause'''
+pause"""
+
 
 # ===== 建立檔案 =====
 def create_files():
     print("正在建立 Project Dashboard v2 檔案...")
-    
+
     files = {
-        'templates/index.html': HTML_CONTENT,
-        'static/css/style.css': CSS_CONTENT,
-        'static/js/script.js': JS_CONTENT,
-        'start_web.bat': BAT_WEB,
-        'start_mcp.bat': BAT_MCP,
-        'core/__init__.py': '''"""
+        "templates/index.html": HTML_CONTENT,
+        "static/css/style.css": CSS_CONTENT,
+        "static/js/script.js": JS_CONTENT,
+        "start_web.bat": BAT_WEB,
+        "start_mcp.bat": BAT_MCP,
+        "core/__init__.py": '''"""
 Project Dashboard v2 - Core Module
 """
 from .project_manager import ProjectManager
@@ -498,23 +499,24 @@ from .database import DatabaseManager
 
 __all__ = ['ProjectManager', 'DatabaseManager']
 ''',
-        'tests/__init__.py': '# Tests module',
+        "tests/__init__.py": "# Tests module",
     }
-    
+
     for filepath, content in files.items():
         full_path = BASE_DIR / filepath
         full_path.parent.mkdir(parents=True, exist_ok=True)
-        
-        with open(full_path, 'w', encoding='utf-8') as f:
+
+        with open(full_path, "w", encoding="utf-8") as f:
             f.write(content)
-        
+
         print(f"✓ 已建立: {filepath}")
-    
+
     print("\n✅ 所有檔案建立完成！")
     print("\n快速開始：")
     print("1. pip install -r requirements.txt")
     print("2. python app.py")
     print("3. 開啟瀏覽器: http://127.0.0.1:5001")
+
 
 if __name__ == "__main__":
     create_files()
