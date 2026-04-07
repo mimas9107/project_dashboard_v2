@@ -97,16 +97,29 @@ async function showStructure(name) {
     
     new bootstrap.Modal(document.getElementById('structureModal')).show();
     
-    const readmeRes = fetch(`/api/readme/${name}`);
-    const structureRes = fetch(`/api/structure/${name}`);
+    const encodedName = encodeURIComponent(name);
     
-    const [readmeResp, structureResp] = await Promise.all([readmeRes, structureRes]);
-    
-    const readmeData = await readmeResp.json();
-    const structureData = await structureResp.json();
-    
-    document.getElementById('readmeContent').innerHTML = renderMarkdown(readmeData.readme);
-    document.getElementById('treeContent').innerHTML = `<ul class="tree-list">${renderTree(structureData)}</ul>`;
+    try {
+        const readmeRes = fetch(`/api/readme/${encodedName}`);
+        const structureRes = fetch(`/api/structure/${encodedName}`);
+        
+        const [readmeResp, structureResp] = await Promise.all([readmeRes, structureRes]);
+        
+        if (readmeResp.ok) {
+            const readmeData = await readmeResp.json();
+            document.getElementById('readmeContent').innerHTML = renderMarkdown(readmeData.readme);
+        } else {
+            document.getElementById('readmeContent').innerHTML = '<div class="text-danger text-center py-5">無法載入 README</div>';
+        }
+        
+        if (structureResp.ok) {
+            const structureData = await structureResp.json();
+            document.getElementById('treeContent').innerHTML = `<ul class="tree-list">${renderTree(structureData)}</ul>`;
+        }
+    } catch (error) {
+        document.getElementById('readmeContent').innerHTML = `<div class="text-danger text-center py-5">載入失敗: ${error.message}</div>`;
+        document.getElementById('treeContent').innerHTML = `<div class="text-danger text-center py-5">載入失敗: ${error.message}</div>`;
+    }
 }
 
 function renderMarkdown(text) {
