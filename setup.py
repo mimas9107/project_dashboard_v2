@@ -65,7 +65,7 @@ HTML_CONTENT = """<!DOCTYPE html>
 
     <!-- 專案詳情 Modal -->
     <div class="modal fade" id="structureModal" tabindex="-1">
-        <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-dialog modal-xl modal-dialog-scrollable">
             <div class="modal-content border-0 shadow">
                 <div class="modal-header bg-dark text-white">
                     <h5 class="modal-title"><i class="bi bi-folder2-open me-2"></i><span id="modalTitle"></span></h5>
@@ -258,14 +258,16 @@ body {
 
 /* 專案詳情分欄布局 */
 .detail-split-view {
-    height: 70vh;
-    min-height: 500px;
+    height: 90vh;
+    max-height: 90vh;
 }
 
 .detail-pane {
     display: flex;
     flex-direction: column;
     overflow: hidden;
+    height: 90vh;
+    max-height: 90vh;
 }
 
 .detail-pane-left {

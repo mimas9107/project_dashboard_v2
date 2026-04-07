@@ -228,14 +228,16 @@ body {
 
 /* 專案詳情分欄布局 */
 .detail-split-view {
-    height: 70vh;
-    min-height: 500px;
+    height: 90vh;
+    max-height: 90vh;
 }
 
 .detail-pane {
     display: flex;
     flex-direction: column;
     overflow: hidden;
+    height: 90vh;
+    max-height: 90vh;
 }
 
 .detail-pane-left {
