@@ -1,3 +1,12 @@
+---
+name:          "CHANGELOG.md"
+description:   "專案變更日誌，記錄所有版本的改進與修復。"
+created_date:  "2026/02/14 00:00:00"
+modified_date: "2026/06/18 10:00:00"
+project_version: "2.2.2"
+document_version: "1.0.0"
+agent_sign: ['human/name', 'gemini cli/current_agent']
+---
 # 變更日誌
 
 所有重要的專案變更都會記錄在這個檔案中。
