@@ -2,9 +2,9 @@
 name:          "MEMOIR.md"
 description:   "專案回憶錄，記錄重要決策、架構演進與開發心得。"
 created_date:  "2026/06/18 10:00:00"
-modified_date: "2026/06/18 10:00:00"
-project_version: "2.2.2"
-document_version: "1.0.0"
+modified_date: "2026/06/18 18:00:00"
+project_version: "2.2.3"
+document_version: "1.0.1"
 agent_sign: ['human/name', 'gemini cli/current_agent']
 ---
 # 專案回憶錄 (MEMOIR.md)

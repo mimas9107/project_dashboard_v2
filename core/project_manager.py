@@ -87,18 +87,18 @@ class ProjectManager:
         Raises:
             ValueError: 路徑不安全或不存在
         """
-        target = (self.scan_path / project_name).resolve()
+        raw = self.scan_path / project_name
 
-        # 檢查是否在掃描路徑內
+        # 先檢查 raw path 是否在掃描路徑內（防止目錄遍歷）
         try:
-            target.relative_to(self.scan_path)
+            raw.relative_to(self.scan_path)
         except ValueError:
             raise ValueError(f"不安全的專案路徑: {project_name}")
 
-        if not target.exists():
+        if not raw.exists():
             raise ValueError(f"專案不存在: {project_name}")
 
-        return target
+        return raw.resolve()
 
     def list_all_projects(self) -> List[Dict]:
         """

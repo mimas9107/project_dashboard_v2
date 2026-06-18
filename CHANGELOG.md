@@ -2,9 +2,9 @@
 name:          "CHANGELOG.md"
 description:   "專案變更日誌，記錄所有版本的改進與修復。"
 created_date:  "2026/02/14 00:00:00"
-modified_date: "2026/06/18 10:00:00"
-project_version: "2.2.2"
-document_version: "1.0.0"
+modified_date: "2026/06/18 18:00:00"
+project_version: "2.2.3"
+document_version: "1.0.1"
 agent_sign: ['human/name', 'gemini cli/current_agent']
 ---
 # 變更日誌
@@ -12,6 +12,18 @@ agent_sign: ['human/name', 'gemini cli/current_agent']
 所有重要的專案變更都會記錄在這個檔案中。
 
 格式基於 [Keep a Changelog](https://keepachangelog.com/zh-TW/1.0.0/)。
+
+## [2.2.3] - 2026-06-18
+
+### 🐛 錯誤修復
+- **前端 `url_for` 不存在於 FastAPI Jinja2 環境**: `templates/index.html` 中的 `{{ url_for(...) }}` 改為直接路徑
+- **Symlink 專案誤判為不安全路徑**: `core/project_manager.py` 的 `validate_project_path` 改用 unresolved path 做路徑檢查，允許掃描目錄內的 symbolic link
+- **單一專案掃描錯誤導致整支 API 掛掉**: `app.py` 的 `/api/projects` 加入 `try/except` 跳過問題專案，避免回傳非陣列格式使前端 `.filter()` 報錯
+
+### 🔧 技術改進
+- `pyproject.toml` 依賴優化（保留 FastAPI 為主，移除不相關依賴）
+
+---
 
 ## [2.2.2] - 2026-04-07
 

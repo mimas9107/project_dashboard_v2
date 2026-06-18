@@ -2,12 +2,12 @@
 name:          "README.md"
 description:   "專案主要說明文件，包含功能亮點、架構說明與快速開始指南。"
 created_date:  "2026/02/14 00:00:00"
-modified_date: "2026/06/18 10:00:00"
-project_version: "2.2.2"
-document_version: "1.0.0"
+modified_date: "2026/06/18 18:00:00"
+project_version: "2.2.3"
+document_version: "1.0.1"
 agent_sign: ['human/name', 'gemini cli/current_agent']
 ---
-# Project Dashboard v2.2.2
+# Project Dashboard v2.2.3
 
 > 統一核心邏輯 + SQLite 資料庫 + FastAPI Web Server + MCP Server 的本地專案管理系統
 

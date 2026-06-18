@@ -64,7 +64,10 @@ async def get_projects():
 
         enriched_projects = []
         for project in projects:
-            info = project_manager.get_project_info(project["name"])
+            try:
+                info = project_manager.get_project_info(project["name"])
+            except Exception:
+                continue
 
             git_status, git_detail = info["git_status"]
 

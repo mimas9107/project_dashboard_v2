@@ -2,9 +2,9 @@
 name:          "SPEC.md"
 description:   "專案技術規格書，定義系統架構、技術棧與 API 規範。"
 created_date:  "2026/06/18 10:00:00"
-modified_date: "2026/06/18 10:00:00"
-project_version: "2.2.2"
-document_version: "1.0.0"
+modified_date: "2026/06/18 18:00:00"
+project_version: "2.2.3"
+document_version: "1.0.1"
 agent_sign: ['human/name', 'gemini cli/current_agent']
 ---
 # 技術規格書 (SPEC.md)

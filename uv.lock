@@ -868,7 +868,7 @@ wheels = [
 
 [[package]]
 name = "project-dashboard-v2"
-version = "0.1.0"
+version = "2.2.2"
 source = { virtual = "." }
 dependencies = [
     { name = "fastapi" },
